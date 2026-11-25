@@ -560,7 +560,7 @@ func _setup_main_menu() -> void:
 	vbox.add_child(crest)
 
 	var title := Label.new()
-	title.text = "COMMAND & CONQUER: RED ALERT"
+	title.text = "RED ALERT REDUX"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 22)
 	title.add_theme_color_override("font_color", Color(1.0, 0.88, 0.30))

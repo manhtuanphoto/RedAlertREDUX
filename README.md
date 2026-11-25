@@ -2,7 +2,7 @@
   <img src="icon.png" width="128" alt="Red Alert Autobattle HD-2D Icon"/>
 </p>
 
-<h1 align="center">Command & Conquer: Red Alert — Autobattle & RTS HD-2D</h1>
+<h1 align="center">RedAlertREDUX</h1>
 
 <p align="center">
   <b>An authentic Red Alert 2.5D HD-2D RTS & Autobattle experience built in Godot 4.7 using 100% original OpenRA assets.</b><br/>

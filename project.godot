@@ -1,11 +1,11 @@
 ; Engine configuration file.
-; Autobattle HD-2D (2D Pixel Art in a 3D World) - Godot 4.7
+; RedAlertREDUX (2D Pixel Art in a 3D World) - Godot 4.7
 
 config_version=5
 
 [application]
 
-config/name="Autobattle HD-2D"
+config/name="RedAlertREDUX"
 run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.png"
