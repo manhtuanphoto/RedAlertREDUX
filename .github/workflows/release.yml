@@ -1,0 +1,50 @@
+name: Build & Release Windows EXE
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Godot 4.7.2 & Export Templates
+        run: |
+          GODOT_VER="4.7.2-stable"
+          wget -q "https://github.com/godotengine/godot/releases/download/${GODOT_VER}/Godot_v${GODOT_VER}_linux.x86_64.zip"
+          unzip -q "Godot_v${GODOT_VER}_linux.x86_64.zip"
+          mv "Godot_v${GODOT_VER}_linux.x86_64" /usr/local/bin/godot
+          chmod +x /usr/local/bin/godot
+
+          wget -q "https://github.com/godotengine/godot/releases/download/${GODOT_VER}/Godot_v${GODOT_VER}_export_templates.tpz"
+          mkdir -p ~/.local/share/godot/export_templates/4.7.2.stable
+          unzip -q -j "Godot_v${GODOT_VER}_export_templates.tpz" "templates/*" -d ~/.local/share/godot/export_templates/4.7.2.stable/
+
+      - name: Export RedAlertREDUX.exe
+        run: |
+          mkdir -p build
+          godot --headless --import --quit || true
+          godot --headless --export-release "Windows Desktop" build/RedAlertREDUX.exe
+          cp -r assets build/assets
+          cd build && zip -r ../RedAlertREDUX-Windows.zip .
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RedAlertREDUX-Windows
+          path: RedAlertREDUX-Windows.zip
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: RedAlertREDUX-Windows.zip
+          generate_release_notes: true

@@ -452,7 +452,7 @@ func _load_png(path: String) -> ImageTexture:
 	return ImageTexture.create_from_image(img)
 
 func _init_textures() -> void:
-	var dir := ProjectSettings.globalize_path("res://assets/ra_sprites")
+	var dir := RtsData.asset_path("ra_sprites")
 	var keys := [
 		"0_infantry", "0_rocket", "0_engineer", "0_tank", "0_heavy", "0_artillery", "0_heli", "0_plane", "0_base", "0_mcv", "0_harv",
 		"1_infantry", "1_rocket", "1_engineer", "1_tank", "1_heavy", "1_artillery", "1_heli", "1_plane", "1_base", "1_mcv", "1_harv",
@@ -607,7 +607,7 @@ func _spawn_die_anim(u: UnitData) -> void:
 			return
 
 func _init_audio_pool() -> void:
-	var adir := ProjectSettings.globalize_path("res://assets/ra_audio")
+	var adir := RtsData.asset_path("ra_audio")
 	for sname in [
 		"gun13", "missile6", "cannon1", "cannon2", "turret1", "missile1",
 		"kaboom1", "kaboom15", "kaboom22", "dedman1", "dedman2", "dedman3",

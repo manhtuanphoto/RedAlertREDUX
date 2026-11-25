@@ -1,6 +1,8 @@
 class_name Terrain3D
 extends Node3D
 
+const RtsData = preload("res://scripts/RtsData.gd")
+
 var world_width: float = 58.0
 var world_depth: float = 58.0
 var border_margin: float = 1.0 # 1-tile hidden buffer around playable Bounds
@@ -39,9 +41,9 @@ func reload_map(map_id: String) -> void:
 	_build_bounds_mask()
 
 func _load_ra_map() -> void:
-	var base_dir := ProjectSettings.globalize_path("res://assets/ra_maps/" + current_map_id)
+	var base_dir := RtsData.asset_path("ra_maps/" + current_map_id)
 	if not DirAccess.dir_exists_absolute(base_dir):
-		base_dir = ProjectSettings.globalize_path("res://assets/ra_map")
+		base_dir = RtsData.asset_path("ra_map")
 	var meta_path := base_dir.path_join("ra_map_meta.json")
 	var diff_path := base_dir.path_join("ra_map_diffuse.png")
 	var height_path := base_dir.path_join("ra_map_height.png")
@@ -308,7 +310,7 @@ func _build_bounds_mask() -> void:
 		add_child(mi)
 
 func _spawn_ra_props(props: Array) -> void:
-	var sprite_dir := ProjectSettings.globalize_path("res://assets/ra_sprites")
+	var sprite_dir := RtsData.asset_path("ra_sprites")
 	var cache: Dictionary = {}
 	var half_w := world_width * 0.5
 	var half_d := world_depth * 0.5

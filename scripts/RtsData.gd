@@ -46,3 +46,8 @@ static func get_unit_cameo(key: String, faction: String) -> String:
 	if d.has("cameo"):
 		return String(d["cameo"])
 	return String(d.get("cameo_" + faction, "e1"))
+
+static func asset_path(rel: String) -> String:
+	if OS.has_feature("standalone"):
+		return OS.get_executable_path().get_base_dir().path_join("assets").path_join(rel)
+	return ProjectSettings.globalize_path("res://assets/" + rel)

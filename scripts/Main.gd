@@ -122,15 +122,15 @@ func _setup_openra_hud() -> void:
 	add_child(canvas)
 
 	var sb_img := Image.new()
-	sb_img.load(ProjectSettings.globalize_path("res://assets/ra_ui/sidebar.png"))
+	sb_img.load(RtsData.asset_path("ra_ui/sidebar.png"))
 	sb_tex = ImageTexture.create_from_image(sb_img)
 
 	var dlg_img := Image.new()
-	dlg_img.load(ProjectSettings.globalize_path("res://assets/ra_ui/dialog.png"))
+	dlg_img.load(RtsData.asset_path("ra_ui/dialog.png"))
 	dlg_tex = ImageTexture.create_from_image(dlg_img)
 
 	var logo_img := Image.new()
-	logo_img.load(ProjectSettings.globalize_path("res://assets/ra_ui/loadscreen-2x.png"))
+	logo_img.load(RtsData.asset_path("ra_ui/loadscreen-2x.png"))
 	logo_tex = ImageTexture.create_from_image(logo_img)
 
 	hud_root = Control.new()
@@ -138,7 +138,7 @@ func _setup_openra_hud() -> void:
 	hud_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui_theme = Theme.new()
 	px_font = FontFile.new()
-	if px_font.load_dynamic_font(ProjectSettings.globalize_path("res://assets/fonts/Tiny5-Regular.ttf")) == OK:
+	if px_font.load_dynamic_font(RtsData.asset_path("fonts/Tiny5-Regular.ttf")) == OK:
 		px_font.antialiasing = TextServer.FONT_ANTIALIASING_NONE
 		px_font.subpixel_positioning = TextServer.SUBPIXEL_POSITIONING_DISABLED
 		ui_theme.default_font = px_font
@@ -522,7 +522,7 @@ func _setup_rts_helpers() -> void:
 	add_child(fog_mesh)
 
 	# Load original RA cursors (mouse.shp)
-	var cdir := ProjectSettings.globalize_path("res://assets/ra_sprites")
+	var cdir := RtsData.asset_path("ra_sprites")
 	for ckey in ["default", "move", "attack", "deploy", "sell", "repair"]:
 		var cp := cdir.path_join("cursor_%s.png" % ckey)
 		if FileAccess.file_exists(cp):
